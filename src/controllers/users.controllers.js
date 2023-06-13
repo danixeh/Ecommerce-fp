@@ -275,8 +275,8 @@ const updateUser = async (req, res) => {
 const updateUserVerify = async (req, res) => {
   try {
     const { id } = req.params;
-    const { validUser } = req.body;
-    await Users.update({ validUser }, { where: { id } });
+    const { validuser } = req.body;
+    await Users.update({ validuser }, { where: { id } });
     res.status(204).send();
   } catch (error) {
     res.status(400).json(error);

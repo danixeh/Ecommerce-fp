@@ -170,8 +170,8 @@ const createCategory = async (req, res, next) => {
 
 const createProduct = async (req, res, next) => {
   try {
-    const { name, description, price, available_qty, userId } = req.body;
-    await Products.create({ name, description, price, available_qty, userId });
+    const { name, description, price, availableqty, userId } = req.body;
+    await Products.create({ name, description, price, availableqty, userId });
     res.status(201).send();
   } catch (error) {
     next(error);
