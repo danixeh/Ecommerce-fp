@@ -12,8 +12,8 @@ const findAllCategories = async (req, res, next) => {
 
 const addProductsToOrder = async (req, res, next) => {
   try {
-    const { orderId, productId, quantity, price } = req.body;
-    await Productinorder.create({ orderId, productId, quantity, price });
+    const { orderId, productId, price } = req.body;
+    await Productinorder.create({ orderId, productId, price });
     res.status(201).send();
   } catch (error) {
     next(error);
