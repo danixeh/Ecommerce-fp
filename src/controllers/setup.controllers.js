@@ -221,7 +221,7 @@ const login = async (req, res, next) => {
         message: "Email does not exist",
       });
     }
-    if (!user.validUser) {
+    if (!user.validuser) {
       return next({
         status: 400,
         name: "invalid email",
