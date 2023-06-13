@@ -1,29 +1,11 @@
-const Todos = require("../models/todos.models");
-const Categories = require("../models/categories.models");
 const Users = require("../models/users.models");
-const Posts = require("../models/post.models");
-const Answers = require("../models/answers.models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { post } = require("../routes/purchase.routes");
 const { sendWelcomeMail } = require("../utils/sendMails");
 const Roles = require("../models/roles.models");
 const Products = require("../models/product.models");
+const Car = require("../models/car.models");
 require("dotenv").config();
-
-const createPost = async (req, res, next) => {
-  try {
-    // extract request body
-    const newPost = req.body;
-
-    // insert into users = Todos.create
-    await Posts.create(newPost);
-    // at the end we answer 201 state
-    res.status(201).send();
-  } catch (error) {
-    next(error);
-  }
-};
 
 const getAllRoles = async (req, res, next) => {
   try {
@@ -40,67 +22,6 @@ const getAllProducts = async (req, res, next) => {
     res.json(products);
   } catch (error) {
     next(error);
-  }
-};
-
-const getPostByCategories = async (req, res, next) => {
-  try {
-    const { categoryId } = req.params;
-    const posts = await Posts.findAll({
-      where: { categoryId },
-      attributes: {
-        exclude: ["description", "categoryId"],
-      },
-      include: {
-        model: Users,
-        attributes: ["username", "id"],
-      },
-    });
-    res.json(posts);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const getPostWithAnswer = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const post = await Posts.findByPk(id, {
-      attributes: {
-        exclude: ["categoryId", "userId"],
-      },
-      include: [
-        {
-          model: Users,
-          // as: "createdBy",
-          attributes: ["id", "username"],
-        },
-        {
-          model: Answers,
-          attributes: ["content", "created_at"],
-          include: {
-            model: Users,
-            attributes: ["username", "id"],
-          },
-        },
-      ],
-    });
-    res.json(post);
-  } catch (error) {
-    next(error);
-  }
-};
-
-const createTodos = async (req, res) => {
-  try {
-    // extract request body
-    const newTodo = req.body;
-    // insert into users = Todos.create
-    await Todos.create(newTodo);
-    // at the end we answer 201 state
-    res.status(201).send();
-  } catch (error) {
-    res.status(400).json(error);
   }
 };
 
@@ -158,16 +79,6 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const createCategory = async (req, res, next) => {
-  try {
-    const { category, description } = req.body;
-    await Categories.create({ category, description });
-    res.status(201).send();
-  } catch (error) {
-    next(error);
-  }
-};
-
 const createProduct = async (req, res, next) => {
   try {
     const { name, description, price, availableqty, userId } = req.body;
@@ -200,6 +111,15 @@ const validateEmail = async (req, res, next) => {
       }
     );
     res.status(201).send();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getAllCars = async (req, res, next) => {
+  try {
+    const car = await Car.findAll();
+    res.json(car);
   } catch (error) {
     next(error);
   }
@@ -258,17 +178,56 @@ const login = async (req, res, next) => {
 };
 
 module.exports = {
-  createPost,
-  createTodos,
-  createUser,
-  createCategory,
   login,
-  getPostByCategories,
-  getPostWithAnswer,
   validateEmail,
   createRol,
   getAllRoles,
-  createProduct,
   updateProduct,
   getAllProducts,
+  getAllCars,
+  createUser,
+  createProduct,
 };
+
+// const createPost = async (req, res, next) => {
+//   try {
+//     // extract request body
+//     const newPost = req.body;
+
+//     // insert into users = Todos.create
+//     await Posts.create(newPost);
+//     // at the end we answer 201 state
+//     res.status(201).send();
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// const getPostWithAnswer = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const post = await Posts.findByPk(id, {
+//       attributes: {
+//         exclude: ["categoryId", "userId"],
+//       },
+//       include: [
+//         {
+//           model: Users,
+//           // as: "createdBy",
+//           attributes: ["id", "username"],
+//         },
+//         {
+//           model: Answers,
+//           attributes: ["content", "created_at"],
+//           include: {
+//             model: Users,
+//             attributes: ["username", "id"],
+//           },
+//         },
+//       ],
+//     });
+//     res.json(post);
+//   } catch (error) {
+//     next(error);
+//   }
+// };

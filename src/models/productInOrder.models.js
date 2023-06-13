@@ -30,10 +30,10 @@ const Productinorder = db.define(
     },
   },
   {
-    timestamps: true,
-    deletedAt: false,
-    updatedAt: false,
-    createdAt: "created_at",
+    timestamps: false,
+    // deletedAt: false,
+    // updatedAt: false,
+    // createdAt: "created_at",
   }
 );
 

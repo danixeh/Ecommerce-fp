@@ -1,12 +1,15 @@
 const { Router } = require("express");
 const {
-  findAllCategories,
   addProductsToOrder,
+  addProductsToCart,
+  createCart,
 } = require("../controllers/purchase.controllers");
 const router = Router();
 
-router.get("/categories", findAllCategories);
+router.post("/orders/:id/products", addProductsToOrder);
 
-router.get("/categories", addProductsToOrder);
+router.post("/cart/:id/products", addProductsToCart);
+
+router.post("/cart/", createCart);
 
 module.exports = router;

@@ -23,6 +23,7 @@ const Productincart = db.define(
     },
     quantity: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
       allowNull: false,
     },
     price: {

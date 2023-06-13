@@ -1,5 +1,3 @@
-const Answers = require("../models/answers.models");
-
 const createAnswer = async (req, res, next) => {
   try {
     const { content, userId, postId } = req.body;

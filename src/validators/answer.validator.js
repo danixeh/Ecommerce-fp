@@ -18,4 +18,4 @@ const createAnswerValidator = [
   validateResult,
 ];
 
-module.exports = { createAnswerValidator };
+module.exports = createAnswerValidator;

@@ -2,7 +2,7 @@
 const { check } = require("express-validator");
 const validateResult = require("../utils/validate.js");
 
-const categoriesValidation = [
+const OrderValidation = [
   check("category", "error category field")
     .exists()
     .withMessage("is not sending category")
@@ -21,4 +21,4 @@ const categoriesValidation = [
   validateResult,
 ];
 
-module.exports = { categoriesValidation };
+module.exports = { OrderValidation };
