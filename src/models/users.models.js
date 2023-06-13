@@ -36,7 +36,7 @@ const Users = db.define(
       defaultValue: 1,
       allowNull: false,
     },
-    validUser: {
+    validuser: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,

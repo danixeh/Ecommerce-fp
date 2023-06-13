@@ -22,7 +22,7 @@ const Product = db.define(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    availableQty: {
+    availableqty: {
       type: DataTypes.BOOLEAN,
       field: "available_qty",
       defaultValue: true,
