@@ -1,5 +1,5 @@
 const isAdmin = (req, res, next) => {
-  const { username, rolId } = req.user;
+  const { rolId } = req.user;
   if (rolId !== 2) {
     return next(console.log(error), {
       status: 401,

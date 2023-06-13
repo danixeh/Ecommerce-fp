@@ -2,8 +2,14 @@
 const { Router } = require("express");
 // here we use the validators and authenticators
 // const authenticate = require("../middlewares/auth.middleware");
-const { hasRoles } = require("../middlewares/role.middleware");
-// const loginUserValidation = require("../validators/user.validators");
+const { hasRoles, isAdmin } = require("../middlewares/role.middleware");
+
+const {
+  createProductValidator,
+  createRolValidator,
+  createUserValidator,
+} = require("../validators/general.validators");
+
 const {
   login,
   validateEmail,
@@ -20,15 +26,15 @@ const {
 
 const router = Router();
 
-router.post("/users", createUser);
-router.post("/product", createProduct);
-router.post("/rol", createRol);
-router.get("/products", getAllProducts);
-router.put("/product/:id", hasRoles(2), updateProduct);
 router.get("/cars", getAllCars);
+router.get("/products", getAllProducts);
 router.get("/rol", getAllRoles);
 router.post("/email-validate", validateEmail);
 router.post("/login", login);
+router.post("/product", createProductValidator, createProduct);
+router.post("/rol", createRolValidator, createRol);
+router.post("/users", createUserValidator, createUser);
+router.put("/product/:id", updateProduct);
 
 module.exports = router;
 

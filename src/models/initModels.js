@@ -6,11 +6,6 @@ const Product = require("../models/product.models");
 const ProductInCart = require("../models/productInCart.models");
 const ProductInOrder = require("../models/productInOrder.models");
 // ------------------------
-const Categories = require("../models/categories.models");
-const Todos = require("../models/todos.models");
-
-const Answers = require("../models/answers.models");
-const Post = require("./post.models");
 
 const initModels = () => {
   Users.hasOne(Car, { foreignKey: "userId" });
@@ -37,24 +32,6 @@ const initModels = () => {
   Roles.hasMany(Users, { foreignKey: "rolId" });
   Users.belongsTo(Roles, { foreignKey: "rolId" });
   // -------------------------------------------
-
-  Users.hasMany(Todos, { foreignKey: "userId" });
-  Todos.belongsTo(Users, { foreignKey: "userId" });
-
-  Users.hasMany(Answers, { foreignKey: "userId" });
-  Answers.belongsTo(Users, { foreignKey: "userId" });
-
-  Post.hasMany(Answers, { foreignKey: "postId" });
-  Answers.belongsTo(Post, { foreignKey: "postId" });
-
-  Users.hasMany(Post, { foreignKey: "userId" });
-  Post.belongsTo(Users, { foreignKey: "userId" });
-
-  Categories.hasMany(Post, { foreignKey: "categoryId" });
-  Post.belongsTo(Categories, { foreignKey: "categoryId" });
-
-  // Categories.hasMany(Post, { foreignKey: "categoryId" });
-  // Post.belongsTo(Categories, { foreignKey: "categoryId" });
 };
 
 module.exports = initModels;

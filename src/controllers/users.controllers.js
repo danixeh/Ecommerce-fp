@@ -64,11 +64,13 @@ const getUserProductsById = async (req, res, next) => {
       include: [
         {
           model: Car,
+          include: {
+            model: Productincart,
+          },
           // attributes: ["id", "totalPrice", "status"],
         },
         //   {
-        //     model: Categories,
-        //     attributes: ["id", "name_category"],
+        //     model: Productincart,
         //   },
       ],
     });

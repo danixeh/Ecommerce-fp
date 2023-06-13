@@ -219,10 +219,10 @@ module.exports = {
 //         {
 //           model: Answers,
 //           attributes: ["content", "created_at"],
-//           include: {
-//             model: Users,
-//             attributes: ["username", "id"],
-//           },
+// include: {
+//   model: Users,
+//   attributes: ["username", "id"],
+// },
 //         },
 //       ],
 //     });

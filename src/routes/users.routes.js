@@ -18,7 +18,7 @@ router.delete("/User/:id", deleteUser);
 router.get("/orders", getAllOrders);
 router.get("/User/:id", getUserById);
 router.get("/User/:id/orders", getUserOrdersById);
-router.get("/User/:id/products", getUserProductsById);
+router.get("/car/:id/products", getUserProductsById);
 router.get("/users", getAllUsers);
 router.post("/order", createOrder);
 router.put("/users/:id", updateUser);

@@ -8,7 +8,7 @@ const initModels = require("./models/initModels");
 initModels();
 
 const db = require("./utils/database.js");
-const Todos = require("./models/users.models.js");
+
 const cors = require("cors");
 const errorHandler = require("./middlewares/errorHandler.middleware");
 const logError = require("./middlewares/logError.middleware");
